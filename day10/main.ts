@@ -18,6 +18,9 @@ type Position = {
   y: number,
 }
 
+type Cell = {
+  wasVisited: boolean,
+}
 
 let head: Position = {
   x: 0, y: 0
@@ -26,18 +29,5 @@ let tail: Position = {
   x: 0, y: 0
 }
 
-let visited: Position[] = []
+let map: Cell[][] = []
 
-
-movements.forEach(mvm => {
-  switch (mvm.type) {
-    case 'U':
-      break
-    case 'D':
-      break
-    case 'L':
-      break
-    case 'R':
-      break
-  }
-})

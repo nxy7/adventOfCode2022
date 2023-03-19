@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from "node:fs"
 const inputByLine = fs.readFileSync("./input.txt", "utf-8").trim().split("\n")
 
 type File = {
@@ -98,7 +98,7 @@ while (currentIndex < inputByLine.length) {
         output: outputLines
       }
     } else {
-      console.log("Unknown command")
+      // console.log("Unknown command")
       process.abort()
     }
     commands.push(cmd)
@@ -120,7 +120,7 @@ commands.forEach((command) => {
       } else {
         let targetDir = currentDir.content.find(e => e.name == command.arguments) as Dir
         if (!targetDir) {
-          console.log(command, currentDir)
+          // console.log(command, currentDir)
           process.abort()
         }
         currentDir = targetDir
@@ -140,9 +140,9 @@ commands.forEach((command) => {
     }
 
   } catch (e) {
-    console.log(command)
-    console.log("root", rootDir)
-    console.log(e)
+    // console.log(command)
+    // console.log("root", rootDir)
+    // console.log(e)
     process.abort()
   }
 })
@@ -175,7 +175,7 @@ function recursiveD1(d: Dir){
 }
 recursiveD1(rootDir)
 
-console.log(sumOfLessThan100000)
+// console.log(sumOfLessThan100000)
 
 let totalSpace = 70000000
 let spaceNeeded = 30000000
@@ -183,7 +183,7 @@ let spaceNeeded = 30000000
 let needToFree = (totalSpace - spaceNeeded - calculateDirSize(rootDir)) * -1
 
 let bigEnaugh = dirSizes.filter(d => d.size > needToFree)
-console.log(bigEnaugh)
+// console.log(bigEnaugh)
 let smallest = bigEnaugh.reduce((p, c) => {
   if (c.size < p.size) {
     return c
@@ -192,5 +192,10 @@ let smallest = bigEnaugh.reduce((p, c) => {
   }
 })
 
-console.log(smallest)
+const answer = {
+  first: sumOfLessThan100000,
+  second: smallest.size
+}
+
+console.log(answer)
 

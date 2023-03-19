@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from "node:fs"
 const input: string = fs.readFileSync("./input.txt", "utf-8")
 
 const inputByLine = input.split("\n")
@@ -64,7 +64,7 @@ rucksacks.forEach((el) => {
   answerA += rucksackCommonItemValue(el)
 })
 
-console.log(answerA)
+// console.log(answerA)
 
 
 let elfGroups: Rucksack[][] = []
@@ -111,9 +111,13 @@ let answerB = 0
 let badgesValues = elfGroups.forEach((group) => {
   const item = commonItem(group)
   if (!item) {
-    console.log("No common value for", group)
+    // console.log("No common value for", group)
     return
   }
   answerB += itemValue(item)
 })
-console.log("Second answer: ", answerB)
+const answer = {
+  first: answerA,
+  second: answerB
+}
+console.log(answer)

@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from "node:fs"
 const inputByLine: string[] = fs.readFileSync("./input.txt", "utf-8").trim().split("\n")
 
 const height2dMap = inputByLine.map(line => line.split("").map(cell => Number(cell)))
@@ -34,7 +34,7 @@ let scenicScores = height2dMap.map((row, rowInd) => {
 
     let score = [...rowScores, ...colScores].reduce((p, c) => p*c)
     
-    console.log(rowScores, colScores, score)
+    // console.log(rowScores, colScores, score)
     
     return score
   })
@@ -68,7 +68,10 @@ isVisible2dMap.forEach(row => row.forEach(cell => {
   }
 }))
 // console.log(rotatedHeight2dMap)
-console.log(visibleCount)
-console.log(maxScore)
+const answer = {
+  first: visibleCount,
+  second: maxScore
+}
+console.log(answer)
 // console.log(isVisibleMap)
 

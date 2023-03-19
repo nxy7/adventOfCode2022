@@ -1,4 +1,4 @@
-import {readFileSync} from "fs"
+import {readFileSync} from "node:fs"
 const input = readFileSync("./input.txt", "utf-8")
 
 
@@ -28,8 +28,13 @@ const totalCalByElf = groupByElf.map((el)=>{
 
 const sorted = totalCalByElf.sort((a, b) => b-a)
 
-console.log(sorted[0])
+// console.log(sorted[0])
 
 const topThree = sorted[0] + sorted[1] + sorted[2]
 
-console.log(topThree)
+const answer={
+  first: sorted[0],
+  second: topThree
+}
+
+console.log(answer)

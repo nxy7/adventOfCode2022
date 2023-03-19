@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from "node:fs"
 const input = fs.readFileSync("./input.txt", "utf-8").trim().split("")
 
 const firstMarker = input.findIndex((_, ind, arr) => {
@@ -22,7 +22,12 @@ const secondMarker= input.findIndex((_, ind, arr) => {
   return keys.length == 14
 })+14
 
-console.log(firstMarker, secondMarker)
+
+const answer={
+  first: firstMarker,
+  second: secondMarker
+}
+console.log(answer)
 
 
 

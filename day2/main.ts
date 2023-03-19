@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
 const input = readFileSync("./input.txt", "utf-8").trimEnd()
 const splitOnLine = input.split("\n").map(el => el.trimEnd())
@@ -9,7 +9,7 @@ const scissors = ["C", "Z"]
 
 type Symbol = "R" | "P" | "S"
 
-console.log(splitOnLine)
+// console.log(splitOnLine)
 const roundsA: Symbol[][] = splitOnLine.map((line, lineInd) => {
   const symbols: Symbol[] = line.split(" ").map((el, ind) => {
     if (rock.includes(el))
@@ -70,5 +70,10 @@ const scoresB = roundsB.map((el) => {
 
 const totalScoreB = scoresB.reduce((p, c) => p+c)
 
-console.log(totalScoreA)
-console.log(totalScoreB)
+// console.log(totalScoreA)
+// console.log(totalScoreB)
+const answer = {
+  first: totalScoreA,
+  second: totalScoreB,
+}
+console.log(answer)

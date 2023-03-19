@@ -1,4 +1,4 @@
-import * as fs from "fs"
+import * as fs from "node:fs"
 const input: string = fs.readFileSync("./input.txt", "utf-8").trim()
 
 type range = {
@@ -7,7 +7,7 @@ type range = {
 }
 
 const lines = input.split("\n")
-console.log(lines.length)
+// console.log(lines.length)
 const elfPairs: range[][] = lines.map((line) => {
   const strToRange = (str: string): range => {
     const startStr = str.split("-")[0]
@@ -35,8 +35,13 @@ const howManyOverlap = elfPairs
     return p += c
   }, 0)
 
-console.log(howManyContain)
-console.log(howManyOverlap)
+
+const answer = {
+  first: howManyContain,
+  second: howManyOverlap
+}
+
+console.log(answer)
 
 function doesContain(r1: range, r2: range) {
   return r1.start <= r2.start && r1.end >= r2.end

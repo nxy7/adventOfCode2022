@@ -18,63 +18,65 @@ type Position = {
   y: number,
 }
 
+let knotsA: Position[] = []
+let knotsB: Position[] = []
 
-let head: Position = {
-  x: 0, y: 0
-}
-let tail: Position = {
-  x: 0, y: 0
-}
+for (let i = 0; i < 2; i++)
+  knotsA.push({ x: 0, y: 0 })
+for (let i = 0; i < 10; i++)
+  knotsB.push({ x: 0, y: 0 })
 
-let visited: Position[] = [{ x: 0, y: 0 }]
-const addVisited = (position: Position) => {
-  let isPresent = visited.find(e => (e.x == position.x && e.y == position.y))
+
+let visitedA: Position[] = []
+let visitedB: Position[] = []
+const addVisited = (position: Position, targetArr: Position[]) => {
+  let isPresent = targetArr.find(e => (e.x == position.x && e.y == position.y))
   if (!isPresent) {
-    visited.push({x: position.x, y:position.y})
+    targetArr.push({ x: position.x, y: position.y })
+    // console.log({ x: position.x, y: position.y })
   }
 }
 
 
-const moveHead = (move: Position) => {
+const moveKnots = (move: Position, knots: Position[], targetArr: Position[]) => {
   while (move.x != 0 || move.y != 0) {
     if (move.x != 0) {
       if (move.x > 0) {
         move.x--
-        head.x--
+        knots[0].x++
       }
       else {
         move.x++
-        head.x++
+        knots[0].x--
       }
     }
     if (move.y != 0) {
       if (move.y > 0) {
         move.y--
-        head.y--
+        knots[0].y++
       }
       else {
         move.y++
-        head.y++
+        knots[0].y--
       }
     }
 
-    let [xDif, yDif] = [(head.x - tail.x), (head.y - tail.y)]
-    if (xDif > 1) {
-      tail.y = head.y
-      tail.x = head.x - 1
-    } else if (xDif < -1) {
-      tail.y = head.y
-      tail.x = head.x + 1
+    for (let i = 1; i < knots.length; i++) {
+      let [kA, kB] = [knots[i - 1], knots[i]]
+      let [xDif, yDif] = [(kA.x - kB.x), (kA.y - kB.y)]
+      let [xDist, yDist] = [Math.abs(xDif), Math.abs(yDif)]
+      if (xDist > 1 || (xDist > 0 && yDist > 1)){
+      kB.x += 1 * (xDist/xDif)
+      }
+
+      if(yDist > 1 || (yDist > 0 && xDist > 1)) {
+      kB.y += 1 * (yDist/yDif)
+      }
+
+      if (i == knots.length - 1)
+        addVisited(knots[knots.length - 1], targetArr)
+
     }
-    if (yDif > 1) {
-      tail.y = head.y - 1
-      tail.x = head.x
-    } else if (yDif < -1) {
-      tail.y = head.y + 1
-      tail.x = head.x
-    }
-    addVisited(tail)
-    // console.log(visited)
   }
 }
 
@@ -94,13 +96,13 @@ movements.forEach(mvm => {
       movePosition.x = mvm.amount
       break
   }
-  moveHead(movePosition)
+  moveKnots({ ...movePosition }, knotsB, visitedB)
+  moveKnots({ ...movePosition }, knotsA, visitedA)
 })
 
-let visitedCount = visited.length
-
 const answer = {
-  first: visitedCount
+  first: visitedA.length,
+  second: visitedB.length
 }
 
 console.log(answer)

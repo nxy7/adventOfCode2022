@@ -1,8 +1,3 @@
-<!--toc:start-->
-- [adventOfCode2022](#adventofcode2022)
-- [Completed](#completed)
-<!--toc:end-->
-
 # adventOfCode2022
 Advent of Code 2022
 

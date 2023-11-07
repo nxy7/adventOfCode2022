@@ -6,6 +6,24 @@ import (
 	"os"
 )
 
+type Monkey struct {
+	monkeyNum   int32
+	items       []int32
+	test        int32
+	operation   []any
+	trueTarget  int32
+	falseTarget int32
+}
+
+func FindMonkey(mks []Monkey, num int32) *Monkey {
+	for _, m := range mks {
+		if m.monkeyNum == num {
+			return &m
+		}
+	}
+	return nil
+}
+
 func main() {
 	f, err := os.Open("input.txt")
 	if err != nil {
@@ -30,10 +48,10 @@ func main() {
 			currentMonkey++
 			continue
 		}
-		// monkey := monkeySplit[currentMonkey]
-
 		monkeySplit[currentMonkey] = append(monkeySplit[currentMonkey], line)
 	}
+
+	// change lines to monkey
 
 	fmt.Printf("monkeySplit: %+v\n", monkeySplit)
 }

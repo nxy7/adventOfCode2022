@@ -24,6 +24,18 @@ func FindMonkey(mks []Monkey, num int32) *Monkey {
 	return nil
 }
 
+func MonkeyThrowItem(itemWorryLevel int32, targetMonkey *Monkey) {
+
+}
+
+func ProcessMonkeyAction(mk *Monkey, mks []Monkey) {
+
+}
+
+func RunMonkeysRound(mks []Monkey) {
+
+}
+
 func main() {
 	f, err := os.Open("input.txt")
 	if err != nil {

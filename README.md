@@ -7,4 +7,4 @@ and run `nix develop -c $SHELL` to start developer environment with all
 necessary dependencies in path.
 
 # Completed
-10/25
+11/25

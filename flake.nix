@@ -6,7 +6,7 @@
     pkgs = import nixpkgs { inherit system; };
 
     packages.${system}.default = pkgs.mkShell {
-      buildInputs = with pkgs; [ zig nodePackages_latest.ts-node go ];
+      buildInputs = with pkgs; [ nodePackages_latest.ts-node go ];
     };
 
   };
